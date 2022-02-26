@@ -189,7 +189,7 @@ public:
     }
 };
 int Employment::count1=0;
-int trial(){
+int main(){
     Employment emp;
     Record* r1=&emp;
     Department dep;
