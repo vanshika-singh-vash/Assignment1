@@ -39,6 +39,7 @@ public:
         id = count;
         Department* newRec = new Department(id,name);
         dep_list.push_back(newRec);
+        cout<<"      recode added"<<endl;
     }
     bool searchName(string name){
         auto it = dep_list.begin();
@@ -67,9 +68,10 @@ public:
             return;
         }
         list();
-        cout<<"      enter name of the department you want to edit"<<endl;
-        string nameEdit;
-        cin>>nameEdit;
+        cout<<"      enter new name"<<endl;
+        string nameEdit="";
+        cin.ignore();
+        getline(cin,nameEdit,'\n');
         auto it  =dep_list.begin();
         for(;it!=dep_list.end();it++){
             if((*it)->id==id){
@@ -122,7 +124,7 @@ public:
         id = count1;
         Employment* newRec = new Employment(id,name,age);
         emp_list.push_back(newRec);
-
+        cout<<"      record added"<<endl;
     }
     bool searchName(string name){
         auto it = emp_list.begin();
@@ -152,10 +154,12 @@ public:
         }
         list();
         cout<<endl;
-        cout<<"      enter name and age to be edited  "<<endl;
-        string nameEdit;
+        cout<<"      enter new name:"<<endl;
+        string nameEdit="";
+        cin.ignore();
+        getline(cin,nameEdit,'\n');
         int ageEdit;
-        cin>>nameEdit;
+        cout<<"      enter new age:"<<endl;
         cin>>ageEdit;
         auto it  =emp_list.begin();
         for(;it!=emp_list.end();it++){
@@ -212,26 +216,31 @@ int main(){
         switch(choice){
             case 1: {
                 int age;
-                string name;
-                cin>>name;
+                string name="";
+                cout<<"      add name of the employee: "<<endl;
+                cin.ignore();
+                getline(cin,name,'\n');
+                cout<<"      add age of the employee: "<<endl;
                 cin>>age;
                 r1->add(name,age);
-                cout<<"      record added"<<endl;
                 break;
             }
             case 2:{
                 int id;
+                cout<<"      enter employee id: "<<endl;
                 cin>>id;
                 r1->edit(id);
                 cout<<"      data edited"<<endl;
                 break;
             }
             case 3: {
+                cout<<"      list of employees: "<<endl;
                 r1->list();
                 break;
             }
             case 4:{
                 int id;
+                cout<<"      enter employee id: "<<endl;
                 cin>>id;
                 r1->deleteId(id);
                 cout<<"      record deleted from employee"<<endl;
@@ -239,24 +248,28 @@ int main(){
             }
             case 5:{
                 string name;
-                cin>>name;
+                cout<<"      add name of the department: "<<endl;
+                cin.ignore();
+                getline(cin,name,'\n');
                 r2->add(name,0);
-                cout<<"      record added"<<endl;
                 break;
             }
             case 6:{
                 int id;
+                cout<<"      enter id of department: "<<endl;
                 cin>>id;
                 r2->edit(id);
                 cout<<"      record edited"<<endl;
                 break;
             }
             case 7:{
+                cout<<"      list of departments: "<<endl;
                 r2->list();
                 break;
             }
             case 8:{
                 int id;
+                cout<<"      enter id of department: "<<endl;
                 cin>>id;
                 r2->deleteId(id);
                 cout<<"      record deleted from department"<<endl;
@@ -266,7 +279,7 @@ int main(){
                 c=9;
                 break;
             default :
-                cout<<"invalid choice";
+                cout<<"      invalid choice";
         }
     }
 }
