@@ -31,7 +31,7 @@ public:
         if(!dep_list.empty()) {
             bool found = searchName(name);
             if (found) {
-                cout << "      already exist" << endl;
+                cout << "      record already exist" << endl;
                 return;
             }
         }
@@ -78,6 +78,7 @@ public:
                 (*it)->name = nameEdit;
             }
         }
+        cout<<"      record name edited"<<endl;
     }
     bool searchId(int id){
         auto it = dep_list.begin();
@@ -92,14 +93,20 @@ public:
         bool find =searchId(id);
         if(!find){
             cout<<"      record doesn't exist"<<endl;
+            return;
         }
+        bool flag = false;
         auto it=dep_list.begin();
         for(;it!=dep_list.end();it++){
             if((*it)->id == id){
+                flag=  true;
                 break;
             }
         }
-        dep_list.erase(it);
+        if(flag) {
+            dep_list.erase(it);
+        }
+        cout<<"      record deleted from department"<<endl;
     }
 };
 int Department::count =0;
@@ -116,7 +123,7 @@ public:
         if(!emp_list.empty()) {
             bool found = searchName(name);
             if (found) {
-                cout << "      already exist" << endl;
+                cout << "      record already exist" << endl;
                 return;
             }
         }
@@ -168,6 +175,7 @@ public:
                 (*it)->age = ageEdit;
             }
         }
+        cout<<"      record edited for employee id: "<<id<<endl;
     }
     bool searchId(int id){
         auto it = emp_list.begin();
@@ -182,14 +190,20 @@ public:
         bool find =searchId(id);
         if(!find){
             cout<<"      record doesn't exist"<<endl;
+            return;
         }
+        bool flag = false;
         auto it=emp_list.begin();
         for(;it!=emp_list.end();it++){
             if((*it)->id == id){
+                flag = true;
                 break;
             }
         }
-        emp_list.erase(it);
+        if(flag) {
+            emp_list.erase(it);
+            cout<<"      record deleted from employee list"<<endl;
+        }
     }
 };
 int Employment::count1=0;
@@ -230,7 +244,6 @@ int main(){
                 cout<<"      enter employee id: "<<endl;
                 cin>>id;
                 r1->edit(id);
-                cout<<"      data edited"<<endl;
                 break;
             }
             case 3: {
@@ -243,7 +256,6 @@ int main(){
                 cout<<"      enter employee id: "<<endl;
                 cin>>id;
                 r1->deleteId(id);
-                cout<<"      record deleted from employee"<<endl;
                 break;
             }
             case 5:{
@@ -259,7 +271,6 @@ int main(){
                 cout<<"      enter id of department: "<<endl;
                 cin>>id;
                 r2->edit(id);
-                cout<<"      record edited"<<endl;
                 break;
             }
             case 7:{
@@ -272,7 +283,6 @@ int main(){
                 cout<<"      enter id of department: "<<endl;
                 cin>>id;
                 r2->deleteId(id);
-                cout<<"      record deleted from department"<<endl;
                 break;
             }
             case 9:
